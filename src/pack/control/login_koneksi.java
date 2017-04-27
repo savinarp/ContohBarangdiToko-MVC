@@ -14,15 +14,16 @@ import java.sql.SQLException;
  *
  * @author Savina
  */
-public class login_koneksi {
-private static Connection koneksi;
-public static Connection GetConnection() throws SQLException
-{
-if (koneksi == null) {
-Driver driver = new Driver();
-koneksi = (Connection)
-DriverManager.getConnection("jdbc:mysql://localhost/toko?zeroDateTimeBehavior=convertToNull", "root", "");
-}
-return koneksi;
-} 
+    public class login_koneksi {
+        private static Connection koneksi;
+        public static Connection GetConnection() throws SQLException
+    {   
+    
+        if (koneksi == null) {
+            Driver driver = new Driver();
+            koneksi = (Connection)
+            DriverManager.getConnection("jdbc:mysql://localhost/toko?zeroDateTimeBehavior=convertToNull", "root", "");
+    }
+        return koneksi;
+    } 
 }

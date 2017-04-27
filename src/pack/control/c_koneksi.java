@@ -59,15 +59,17 @@ public class c_koneksi {
         return koneksi; 
     }
 
-    public static Object getConnection() {
+    public static Object getConnection() 
+    {
         return null;
-        }
-Connection con = null;
-Statement st = null;
-ResultSet rs = null;
-String sql = null;
+    }
+    
+    Connection con = null;
+    Statement st = null;
+    ResultSet rs = null;
+    String sql = null;
    
-public c_koneksi(){
+    public c_koneksi(){
     try
     {
      con =DriverManager.getConnection("jdbc:mysql://localhost:3306/toko","root","");

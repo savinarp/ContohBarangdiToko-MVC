@@ -35,6 +35,48 @@ public class home extends javax.swing.JFrame {
         ctoko = new controllerToko (this);
         ctoko.isiTable();
     }
+    
+    public JTextField getTxtKode(){
+        return txtkode;
+    }
+    public JTextField getTxtNama(){
+        return txtnama;
+    }
+    public JTextField getTxtHarga(){
+        return txtharga;
+    }
+    public JComboBox getCbKategori(){
+        return cbKategoriBrg;
+    }
+    public JComboBox getCbJenis(){
+        return cbjenis;
+    }
+    public JComboBox getCbCariKategori(){
+        return CbCariKategori;
+    }
+    public JButton getButtonHapus(){
+        return Btn_Hapus;
+    }
+    
+    public JButton getButtonBersih(){
+        return Btn_Bersih;
+    }
+    public JButton getButtonSimpan(){
+        return Btn_Simpan;
+    }
+    public JButton getButtonUbah(){
+        return Btn_Ubah;
+    }
+    public JButton getButtonKeluar(){
+        return Btn_Keluar;
+    }
+    public JTable getTableData(){
+        return Tabel1;
+    }
+
+     public void setAdmin (String admin) {
+        Admin.setText(admin);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,7 +89,7 @@ public class home extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        Admin = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -74,6 +116,11 @@ public class home extends javax.swing.JFrame {
         Tabel1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -81,7 +128,7 @@ public class home extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Admin Toko :");
 
-        jTextField4.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        Admin.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Sugarpunch DEMO", 0, 30)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,7 +142,7 @@ public class home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Admin, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addGap(24, 24, 24))
@@ -111,7 +158,7 @@ public class home extends javax.swing.JFrame {
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -142,10 +189,10 @@ public class home extends javax.swing.JFrame {
         });
 
         cbKategoriBrg.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        cbKategoriBrg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Makanan" }));
+        cbKategoriBrg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Makanan", "Minuman", "Alat Rumah Tangga", "Alat Tulis", "Barang Lain" }));
 
         cbjenis.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        cbjenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pack" }));
+        cbjenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pack", "Pcs" }));
 
         txtharga.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
@@ -278,7 +325,7 @@ public class home extends javax.swing.JFrame {
         jLabel7.setText("Pencarian Berdasarkan Kategori Makanan");
 
         CbCariKategori.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        CbCariKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Makanan" }));
+        CbCariKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Makanan", "Minuman", "Alat Rumah Tangga", "Alat Tulis", "Barang Lain" }));
 
         jButton6.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jButton6.setText("Cari");
@@ -302,6 +349,11 @@ public class home extends javax.swing.JFrame {
                 "Kode Barang", "Nama Barang", "Kategori", "Packaging", "Harga"
             }
         ));
+        Tabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabel1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabel1);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -391,12 +443,31 @@ public class home extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         ctoko.CariKategori();
-        ctoko.isiTable();
+        ctoko.isiTableCariKategori();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void txtnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnamaActionPerformed
+
+    private void Tabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabel1MouseClicked
+        // TODO add your handling code here:
+        int baris = Tabel1.getSelectedRow();
+        if (baris != -1)
+        {
+            txtkode.setText(Tabel1.getValueAt(baris, 0).toString());
+            txtnama.setText((String) Tabel1.getValueAt(baris, 1));
+            cbKategoriBrg.setSelectedItem(Tabel1.getValueAt(baris, 2).toString());
+            cbjenis.setSelectedItem(Tabel1.getValueAt(baris, 3).toString());
+            txtharga.setText(Tabel1.getValueAt(baris, 4).toString());
+        }
+    }//GEN-LAST:event_Tabel1MouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        String user = login.user;
+        Admin.setText(" "+user);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -433,60 +504,8 @@ public class home extends javax.swing.JFrame {
         });
     }
 
-    public Object getTableData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public JTextField getTxtKode() {
-        return txtkode;
-    }
-
-    public JTextField getTxtNama() {
-        return txtnama;
-    }
-    
-    public JTextField getTxtHarga() {
-        return txtharga;
-    }
-    
-    public JComboBox getCbKategori() {
-        return cbKategoriBrg;
-    }
-    
-    public JComboBox getCbJenis() {
-        return cbjenis;
-    }
-    
-    public JComboBox getCbCariKategori() {
-        return CbCariKategori;
-    }
-    
-    public JButton getButtonHapus() {
-        return Btn_Hapus;
-    }
-    
-    public JButton getButtonBersih() {
-        return Btn_Bersih;
-    }
-    
-    public JButton getButtonSimpan() {
-        return Btn_Simpan;
-    }
-    
-    public JButton getButtonUbah() {
-        return Btn_Ubah;
-    }
-    
-    public JButton getButtonKeluar() {
-        return Btn_Keluar;
-    }
-    
-    public JTable getTableData() {
-        return Tabel1;
-    }
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Admin;
     private javax.swing.JButton Btn_Bersih;
     private javax.swing.JButton Btn_Hapus;
     private javax.swing.JButton Btn_Keluar;
@@ -510,7 +529,6 @@ public class home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField txtharga;
     private javax.swing.JTextField txtkode;
     private javax.swing.JTextField txtnama;

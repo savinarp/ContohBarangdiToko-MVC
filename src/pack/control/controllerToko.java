@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pack.control;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,13 +17,12 @@ import pack.model.m_toko;
 import pack.view.home;
 import pack.model.tableModelToko;
 
-
 /**
  *
- * @author Savina
+ * @author asus
  */
 public class controllerToko {
-    home hm;
+   home hm;
     implementToko impToko;
     List<m_toko> lt;
     
@@ -32,25 +32,28 @@ public class controllerToko {
         lt = impToko.getAll();  
     }
 
-//mengkosongkan isian field
+    //mengkosongkan isian field
     public void Reset(){
         hm.getTxtKode().setText("");
         hm.getTxtNama().setText("");
         hm.getTxtHarga().setText("");
         hm.getCbKategori().setSelectedItem(null);
-        hm.getCbJenis().setSelectedItem(null); 
+        hm.getCbJenis().setSelectedItem(null);
     }
     
-//menghapus data yang dipilih
+    //menghapus data yang dipilih
     public void Hapus(){
-        if (!hm.getTxtKode().getText().trim().isEmpty()){
-            
-        }else{
+        if (hm.getTxtKode().getText().trim().isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(hm, "Masukkan kode barang atau pilih data yang akan Anda hapus pada tabel!");
+        } else 
+        {
             String kode = (hm.getTxtKode().getText());
             impToko.HapusData(kode);
             JOptionPane.showMessageDialog(hm, "Data berhasil dihapus");
-        }  
+        }
     }
+    
     //menyimpan data
     public void SimpanData(){
         m_toko toko = new m_toko();
@@ -61,6 +64,7 @@ public class controllerToko {
         toko.setjenis(hm.getCbJenis().getSelectedItem().toString());
         impToko.SimpanData(toko);
     }
+    
     //mengubah data
     public void Ubah(){
         m_toko toko = new m_toko();
@@ -71,36 +75,41 @@ public class controllerToko {
         toko.setharga(hm.getTxtHarga().getText());
         impToko.UbahData(toko);
     }
-
+    
     public void isiTable() {
-    lt =impToko.getAll();
-    tableModelToko tmt = new tableModelToko(lt);
-    hm.getTableData().setModel(tmt);
-    
+        lt = impToko.getAll();
+        tableModelToko tmt = new tableModelToko(lt);
+        hm.getTableData().setModel(tmt);
     }
+    
     public void isiField(int row){
-    hm.getTxtKode().setText(lt.get(row).getkode().toString());
-    hm.getTxtNama().setText(lt.get(row).getnama().toString());
-    hm.getCbKategori().setSelectedItem(lt.get(row).getkategori().toString());
-    hm.getCbJenis().setSelectedItem(lt.get(row).getjenis().toString());
-    hm.getTxtHarga().setText(lt.get(row).getharga().toString());
-    
-        
+        hm.getTxtKode().setText(lt.get(row).getkode().toString());
+        hm.getTxtNama().setText(lt.get(row).getnama().toString());
+        hm.getCbKategori().setSelectedItem(lt.get(row).getkategori().toString());
+        hm.getCbJenis().setSelectedItem(lt.get(row).getjenis().toString());
+        hm.getTxtHarga().setText(lt.get(row).getharga().toString());
     }
+    
     public void CariKategori(){
-        if (hm.getCbCariKategori().getSelectedItem().toString().isEmpty()){
+        if(hm.getCbCariKategori().getSelectedItem().toString().isEmpty())
+        {
             impToko.getCariKategori((String)hm.getCbCariKategori().getSelectedItem());
             isiTableCariKategori();
-        }else{
+        } 
+        
+        else 
+        {
             JOptionPane.showMessageDialog(hm, "Silahkan Pilih Kategori");
-        }
-    } 
 
-    private void isiTableCariKategori() {
-       lt =impToko.getCariKategori((String) hm.getCbKategori().getSelectedItem());
-       tableModelToko tmt = new tableModelToko(lt);
-       hm.getTableData().setModel(tmt);
-       
+}
     }
+    
+    public void isiTableCariKategori() {
+        String item = hm.getCbCariKategori().getSelectedItem().toString();
+        lt = impToko.getCariKategori(item);
+        tableModelToko tmt = new tableModelToko(lt);
+        hm.getTableData().setModel(tmt);
+    }
+
 
 }
